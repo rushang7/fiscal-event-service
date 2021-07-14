@@ -1,0 +1,33 @@
+{
+  "name": "fiscal-event-mongo-sink",
+  "config": {
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "connection.uri": "mongodb://username:password@localhost:27017/?retryWrites=false",
+
+    "database": "ifix_dev_db",
+    "collection": "fiscal_event",
+
+    "topics": "fiscal-event",
+
+    "key.ignore": "true",
+    "schema.ignore": true,
+    "value.converter.schemas.enable": false,
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+
+
+    "batch.size": 500,
+    "max.buffered.records": 1000,
+    "flush.timeout.ms": 600000,
+
+    "retry.backoff.ms": 5000,
+    "read.timout.ms": 10000,
+    "linger.ms": 1000,
+
+    "max.in.flight.requests": 2,
+    "errors.log.enable": true,
+    "tasks.max": 1
+
+
+  }
+}
